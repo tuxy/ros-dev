@@ -24,6 +24,9 @@
         inputPackages = [
           pkgs.nixgl.nixGLIntel
           pkgs.colcon
+          pkgs.python3Packages.rosdep
+          pkgs.sdformat_13
+          pkgs.gz-math_7
           (
             with pkgs.rosPackages.kilted;
             buildEnv {
@@ -37,6 +40,7 @@
                 rqt-graph
                 rqt-plot
                 slam-toolbox
+                turtlesim
                 turtlebot3-description
                 turtlebot3-navigation2
                 navigation2
