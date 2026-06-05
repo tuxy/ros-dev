@@ -32,6 +32,8 @@
             buildEnv {
               paths = [
                 ros-core
+                ros-gz
+                gz-launch-vendor
                 rviz2
                 rqt
                 rqt-gui
@@ -49,6 +51,8 @@
                 nav2-controller
                 nav2-planner
                 nav2-lifecycle-manager
+                ament-cmake
+                ament-cmake-core
               ];
             }
           )
