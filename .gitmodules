@@ -1,0 +1,3 @@
+[submodule "src/ros-playground"]
+	path = src/ros-playground
+	url = https://github.com/tuxy/ros-playground
