@@ -10,10 +10,10 @@ Based on nix-ros-overlay, this is a personal devenv used for ROS2 Kilted develop
 ├── justfile                   # (WIP) Convenience commands
 ├── profiles/
 │   ├── dev                    # Dev profile directory to prevent gc
-├── ros-playground/            # Sandbox as a submodule
-│   ├── src/                   
-│       ├── <package-name>/    # Packages
-└── <submodule-name>/          # For any future projects
+├── src/                       # Projects go in here (a lot or "src" in the path names)
+│   ├── ros-playground/                   
+│   │   ├── src/               # Packages in ros-playground
+│   ├── <submodule-name>/      # For any future projects
 ```
 
 ### Improvements
