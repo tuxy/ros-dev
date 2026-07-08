@@ -1,0 +1,38 @@
+#!/usr/bin/env bash
+if [ "${BASH_SOURCE[0]}" != "$0" ]; then
+  _devshell_completion() {
+    local cur="${COMP_WORDS[COMP_CWORD]}"
+    local root
+    root="$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd)"
+    local suggestions=""
+    local d
+    for d in "$root"/src/*/; do
+      [ -d "$d" ] || continue
+      suggestions+="src/$(basename "$d") "
+    done
+    COMPREPLY=( $(compgen -W "$suggestions" -- "$cur") )
+  }
+  complete -F _devshell_completion rosdev
+  return 0
+fi
+
+set -euo pipefail
+ROOT="$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd)"
+
+overlay_cmds=""
+if [ "$#" -eq 0 ]; then
+  echo "[devshell] no projects specified — entering shell without overlays" >&2
+else
+  for arg in "$@"; do
+    setup="$ROOT/${arg%/}/install/setup.bash"
+    if [ -f "$setup" ]; then
+      echo "[devshell] overlay: $arg"
+      overlay_cmds+="source '$setup';"
+    else
+      echo "[devshell] WARN: no overlay at $arg (skipping)" >&2
+    fi
+  done
+fi
+
+echo "nix develop --profile $ROOT/profiles/dev --command bash -c '$overlay_cmds exec bash"
+nix develop --profile $ROOT/profiles/dev --command bash -c '$overlay_cmds exec bash'
