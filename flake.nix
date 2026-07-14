@@ -53,6 +53,7 @@
                 nav2-lifecycle-manager
                 ament-cmake
                 ament-cmake-core
+                urdf-launch
               ];
             }
           )
